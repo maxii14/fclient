@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         tv.setText(stringFromJNI());
     }
 
+
     /**
      * A native method that is implemented by the 'fclient' native library,
      * which is packaged with this application.
