@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
 
+import java.nio.charset.StandardCharsets;
+
 import ru.iu3.fclient.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
@@ -24,13 +26,23 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        int res = initRng();
-        byte[] v = randomBytes(10);
+        int keyBytesCount = 16;
 
-        //Работает!!
-        for(int i = 0; i < 10; i++) {
-            Log.d("bytes", v[i] + ", ");
+        int res = initRng();
+        byte[] key = randomBytes(keyBytesCount);
+
+        for(int i = 0; i < key.length; i++) {
+            Log.d("bytes", key[i] + ", ");
         }
+
+        //Передаём 16-байтовый ключ, преобразуем строку в байты и передаём в функцию encrypt
+        String codedStr = "code this please";
+        byte [] codedStrBytes = codedStr.getBytes();
+        byte [] coded = encrypt(key, codedStrBytes);
+
+        //Передаём в функцию decrypt тот же ключ и закодированные байты
+        String decoded = new String(decrypt(key, coded));
+        Log.d("decoded", decoded); //Получаем исходную строку
 
         // Example of a call to a native method
         TextView tv = binding.sampleText;
