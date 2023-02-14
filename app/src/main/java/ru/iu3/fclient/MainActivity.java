@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         int res = initRng();
         byte[] v = randomBytes(16);
 
-        //Работает!!
         for(int i = 0; i < v.length; i++) {
             Log.d("bytes", v[i] + ", ");
         }
