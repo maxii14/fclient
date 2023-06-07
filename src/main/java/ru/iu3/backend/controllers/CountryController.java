@@ -77,6 +77,7 @@ public class CountryController {
         }
     }
 
+
     @PostMapping("/deletecountries")
     public ResponseEntity deleteCountries(@Valid @RequestBody List<Country> countries) {
         countryRepository.deleteAll(countries);
