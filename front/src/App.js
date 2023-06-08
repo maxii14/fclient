@@ -3,6 +3,7 @@ import {React, useState} from "react";
 import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import CountryListComponent from "./components/CountryListComponent";
+import CountryComponent from "./components/CountryComponent";
 import SideBar from "./components/SideBar";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -30,6 +31,7 @@ const App = props => {
                                     <Route path="login" element={<Login />}/>
                                     <Route path="home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
                                     <Route path="countries" element={<ProtectedRoute><CountryListComponent/></ProtectedRoute>}/>
+                                    <Route path="countries/:id" element={<ProtectedRoute><CountryComponent/></ProtectedRoute>}/>
                                 </Routes>
                             </div>
                         </div>

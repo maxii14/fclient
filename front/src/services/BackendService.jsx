@@ -12,7 +12,8 @@ class BackendService {
     }
 
     logout() {
-        return axios.get(`${AUTH_URL}/logout`, { headers : {Authorization : Utils.getToken()}})
+        //return axios.get(`${AUTH_URL}/logout`, { headers : {Authorization : Utils.getToken()}})
+        return axios.get(`${AUTH_URL}/logout`)
     }
 
     /* Countries */
