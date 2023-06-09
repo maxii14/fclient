@@ -4,6 +4,12 @@ import {BrowserRouter, Route, Routes, Navigate} from "react-router-dom";
 import NavigationBar from "./components/NavigationBar";
 import CountryListComponent from "./components/CountryListComponent";
 import CountryComponent from "./components/CountryComponent";
+import ArtistComponent from "./components/ArtistComponent";
+import ArtistListComponent from "./components/ArtistListComponent";
+import MuseumListComponent from "./components/MuseumListComponent";
+import MyAccountComponent from "./components/MyAccountComponent";
+import MuseumComponent from "./components/MuseumComponent";
+import UsersListComponent from "./components/UsersListComponent";
 import SideBar from "./components/SideBar";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -32,6 +38,12 @@ const App = props => {
                                     <Route path="home" element={<ProtectedRoute><Home/></ProtectedRoute>}/>
                                     <Route path="countries" element={<ProtectedRoute><CountryListComponent/></ProtectedRoute>}/>
                                     <Route path="countries/:id" element={<ProtectedRoute><CountryComponent/></ProtectedRoute>}/>
+                                    <Route path="artists" element={<ProtectedRoute><ArtistListComponent/></ProtectedRoute>}/>
+                                    <Route path="artists/:id" element={<ProtectedRoute><ArtistComponent/></ProtectedRoute>}/>
+                                    <Route path="museums" element={<ProtectedRoute><MuseumListComponent/></ProtectedRoute>}/>
+                                    <Route path="museums/:id" element={<ProtectedRoute><MuseumComponent/></ProtectedRoute>}/>
+                                    <Route path="account" element={<ProtectedRoute><MyAccountComponent/></ProtectedRoute>}/>
+                                    <Route path="users" element={<ProtectedRoute><UsersListComponent/></ProtectedRoute>}/>
                                 </Routes>
                             </div>
                         </div>

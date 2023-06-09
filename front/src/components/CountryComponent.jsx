@@ -44,11 +44,14 @@ const CountryComponent = props => {
         return (
             <div className="m-4">
                 <div className="row my-2 mr-0">
-                    <h3>Страна</h3>
-                    <button
-                        className="btn btn-outline-secondary ml-auto"
-                        onClick={()=>  navigateToCountries() }><FontAwesomeIcon
-                        icon={faChevronLeft}/>{' '}Назад</button>
+                    <div className="col-md-6">
+                        <h3>Страна</h3>
+                    </div>
+                    <div className="col-md-6 clearfix">
+                        <button className="btn btn-outline-secondary float-end" onClick={ () => { navigateToCountries() } }>
+                            <FontAwesomeIcon icon={faChevronLeft}/>{' '}Назад
+                        </button>
+                    </div>
                 </div>
                 <Form onSubmit={onSubmit}>
                     <Form.Group>

@@ -1,6 +1,9 @@
 package ru.iu3.backend.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +14,7 @@ import ru.iu3.backend.repositories.MuseumRepository;
 
 import java.util.*;
 
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api/v1")
 public class MuseumController {
@@ -19,9 +22,8 @@ public class MuseumController {
     MuseumRepository museumRepository;
 
     @GetMapping("/museums")
-    public List
-    getAllMuseums() {
-        return museumRepository.findAll();
+    public Page<Museum> getAllMuseums(@RequestParam("page") int page, @RequestParam("limit") int limit) {
+        return museumRepository.findAll(PageRequest.of(page, limit, Sort.by(Sort.Direction.ASC, "name")));
     }
 
     @PostMapping("/museums")
@@ -58,7 +60,7 @@ public class MuseumController {
         }
     }
 
-    @DeleteMapping("/museums/{id}")
+    /*@DeleteMapping("/museums/{id}")
     public ResponseEntity<Object> deleteCMuseum(@PathVariable(value = "id") Long museumId) {
         Optional<Museum> museum = museumRepository.findById(museumId);
         Map<String, Boolean> resp = new HashMap<>();
@@ -69,5 +71,14 @@ public class MuseumController {
         else
             resp.put("deleted", Boolean.FALSE);
         return ResponseEntity.ok(resp);
+    }*/
+    @PostMapping("/deletemuseums")
+    public ResponseEntity<HttpStatus> deleteMuseums(@RequestBody List<Museum> museums) {
+        List<Long> listOfIds = new ArrayList<>();
+        for (Museum m: museums){
+            listOfIds.add(m.id);
+        }
+        museumRepository.deleteAllById(listOfIds);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
